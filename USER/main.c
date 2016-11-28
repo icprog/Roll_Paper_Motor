@@ -18,7 +18,7 @@ int main(void)
 		delay_init();
 		LED_GPIO_Config();
 		Roll_Pater_Config();
-		EXTIX_Init();
+//		EXTIX_Init();
     USART1_Config();
     TIM2_Config();
     TIM3_Config();

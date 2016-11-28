@@ -3,8 +3,8 @@
 
 #include "stm32f10x.h"
 
-#define       GLED_OFF   GPIO_SetBits(GPIOA, GPIO_Pin_2)
-#define       GLED_ON  		GPIO_ResetBits(GPIOA, GPIO_Pin_2)
+#define       GLED_OFF   GPIO_SetBits(GPIOA, GPIO_Pin_1)
+#define       GLED_ON  		GPIO_ResetBits(GPIOA, GPIO_Pin_1)
 #define       RLED_OFF   GPIO_SetBits(GPIOA, GPIO_Pin_5)
 #define       RLED_ON  GPIO_ResetBits(GPIOA, GPIO_Pin_5)
 

@@ -33,10 +33,10 @@ static void Send_Medicine1_Config(void)
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(DEVICE1_SENSOR2_PORT, &GPIO_InitStructure);
 	//传感器3输入IO口
-// 	GPIO_InitStructure.GPIO_Pin = DEVICE1_SENSOR3_IO;			 
-// 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; 		 
-// 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-// 	GPIO_Init(DEVICE1_SENSOR3_PORT, &GPIO_InitStructure);
+ 	GPIO_InitStructure.GPIO_Pin = DEVICE1_SENSOR3_IO;			 
+ 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; 		 
+ 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+ 	GPIO_Init(DEVICE1_SENSOR3_PORT, &GPIO_InitStructure);
 	//按键输入IO口
 	GPIO_InitStructure.GPIO_Pin = DEVICE1_KEY_IO;			 
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; 		 
@@ -317,7 +317,7 @@ static void Roll_Pater_Motor_Run(void)
 #endif
 		
 	if(Channel.ch1.motor_start_state == 1){
-			if(READ_DEVICE1_SENSOR2 == READLOW){
+			if(READ_DEVICE1_SENSOR2 == READLOW){	//PNP传感器
 				delay_ms(5);
 				if(READ_DEVICE1_SENSOR2 == READLOW){
 //							DEVICE1_MOTOR_RUN;
@@ -331,6 +331,23 @@ static void Roll_Pater_Motor_Run(void)
 						Channel.ch1.motor_state = 0;
 				}
 			}
+#if 0	
+	if(Channel.ch1.motor_start_state == 1){	//NPN传感器
+			if(READ_DEVICE1_SENSOR3 == READLOW){
+				delay_ms(5);
+				if(READ_DEVICE1_SENSOR3 == READLOW){
+//							DEVICE1_MOTOR_RUN;
+						//	delay_ms(1000);
+					
+							Channel.ch1.motor_state = 1;
+					}else{
+							Channel.ch1.motor_state = 0;
+					}
+				}else{
+						Channel.ch1.motor_state = 0;
+				}
+			}
+#endif
 #if 0		
 		/********查询方式启动电机*********/
 	if((READ_DEVICE1_SENSOR3 == READLOW)||(READ_DEVICE2_SENSOR3 == READLOW)\
