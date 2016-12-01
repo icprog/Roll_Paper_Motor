@@ -330,7 +330,7 @@ static void Roll_Pater_Motor_Run(void)
 				}else{
 						Channel.ch1.motor_state = 0;
 				}
-			}
+			}		
 #if 0	
 	if(Channel.ch1.motor_start_state == 1){	//NPN传感器
 			if(READ_DEVICE1_SENSOR3 == READLOW){
@@ -428,6 +428,7 @@ static void Roll_Pater_Motor_Stop(void)
 //函数返回:无
 //注意    :无
 //=============================================================================
+
 void Roll_Pater_Motor_Control(void)
 { 
 		Roll_Pater_Motor_Run();
