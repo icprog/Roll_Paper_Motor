@@ -24,8 +24,8 @@ int main(void)
     TIM3_Config();
 		delay_ms(1000);
     while(1){
-			Roll_Pater_Motor_Control();
 			CH_Key_Control();
+			Roll_Pater_Motor_Control();
 			CH_Light_Control();
 		}
         

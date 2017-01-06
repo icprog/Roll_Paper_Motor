@@ -330,6 +330,8 @@ static void Roll_Pater_Motor_Run(void)
 				}else{
 						Channel.ch1.motor_state = 0;
 				}
+			}else{
+					Channel.ch1.motor_state = 0;
 			}		
 #if 0	
 	if(Channel.ch1.motor_start_state == 1){	//NPN´«¸ÐÆ÷
@@ -483,7 +485,7 @@ void Roll_Pater_Motor_Control(void)
 //=============================================================================
 void CH_Key_Control(void)
 {
-
+#if 0
 		if(Key_ScanNum != 0x00){
 				 if(0x01== (Key_ScanNum&0x01)){
 					 if(Channel.ch1.motor_start_state == 0){
@@ -535,6 +537,26 @@ void CH_Key_Control(void)
 				}
 				Key_ScanNum	&=0x0f;	
 			}
+#else
+			if(READ_DEVICE1_KEY == READLOW){
+				 delay_ms(5);
+					if(READ_DEVICE1_KEY == READLOW){
+						if(Channel.ch1.motor_start_state == 0){
+								Channel.ch1.motor_start_state = 1;
+						 }
+				}else{
+								DEVICE1_MOTOR_SOFT_STOP;
+								Channel.ch1.motor_state = 0;					 
+								Channel.ch1.motor_start_state = 0;
+								Channel.ch1.send_actual = 0;
+						}
+			}else{
+								DEVICE1_MOTOR_SOFT_STOP;
+								Channel.ch1.motor_state = 0;						 
+								Channel.ch1.motor_start_state = 0;
+								Channel.ch1.send_actual = 0;
+				}
+#endif 
 
 }
 //=============================================================================
