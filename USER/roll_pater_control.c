@@ -538,9 +538,10 @@ void CH_Key_Control(void)
 				Key_ScanNum	&=0x0f;	
 			}
 #else
-			if(READ_DEVICE1_KEY == READLOW){
+			if((READ_DEVICE1_KEY == READLOW)&&(READ_DEVICE1_SENSOR3 == READHIGH)){
 				 delay_ms(5);
-					if(READ_DEVICE1_KEY == READLOW){
+					if((
+						READ_DEVICE1_KEY == READLOW)&&(READ_DEVICE1_SENSOR3 == READHIGH)){
 						if(Channel.ch1.motor_start_state == 0){
 								Channel.ch1.motor_start_state = 1;
 						 }
